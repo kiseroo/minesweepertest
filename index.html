@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Minesweeper</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Minesweeper</h1>
+        </header>
+        
+        <div class="controls">
+            <div class="difficulty">
+                <button class="difficulty-btn active" data-difficulty="beginner">Beginner</button>
+                <button class="difficulty-btn" data-difficulty="intermediate">Intermediate</button>
+                <button class="difficulty-btn" data-difficulty="expert">Expert</button>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-box">
+                    <i class="fas fa-bomb"></i>
+                    <span id="mines-count">10</span>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">000</span>
+                </div>
+            </div>
+            
+            <button id="new-game-btn">New Game</button>
+        </div>
+        
+        <div id="game-board" class="game-board beginner"></div>
+        
+        <div id="game-message" class="game-message hidden">
+            <div class="message-content">
+                <h2 id="result-text">You Win!</h2>
+                <p id="result-stats">Time: 42s</p>
+                <button id="play-again-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created with <i class="fas fa-heart"></i> | <a href="https://github.com" target="_blank">GitHub</a></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

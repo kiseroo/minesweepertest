@@ -1,0 +1,303 @@
+/* Modern Minesweeper Game Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    max-width: 600px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4cc9f0;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.difficulty {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.difficulty-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.difficulty-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.difficulty-btn.active {
+    background-color: #4cc9f0;
+    color: #16213e;
+    font-weight: bold;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+}
+
+.stat-box i {
+    color: #f72585;
+}
+
+#new-game-btn {
+    background-color: #4cc9f0;
+    color: #16213e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+    font-size: 1rem;
+}
+
+#new-game-btn:hover {
+    background-color: #f72585;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+}
+
+.game-board {
+    display: grid;
+    gap: 2px;
+    margin: 0 auto;
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Board sizes for different difficulties */
+.game-board.beginner {
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.game-board.intermediate {
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+.game-board.expert {
+    grid-template-columns: repeat(30, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.cell.revealed {
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: default;
+}
+
+.cell.revealed:hover {
+    transform: none;
+}
+
+.cell.mine {
+    background-color: #f72585;
+    color: white;
+}
+
+.cell.flagged {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.cell.flagged::before {
+    content: '🚩';
+    font-size: 1rem;
+}
+
+/* Number colors */
+.cell[data-number="1"] { color: #4cc9f0; }
+.cell[data-number="2"] { color: #4895ef; }
+.cell[data-number="3"] { color: #4361ee; }
+.cell[data-number="4"] { color: #3f37c9; }
+.cell[data-number="5"] { color: #f72585; }
+.cell[data-number="6"] { color: #b5179e; }
+.cell[data-number="7"] { color: #7209b7; }
+.cell[data-number="8"] { color: #560bad; }
+
+.game-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.game-message.hidden {
+    display: none;
+}
+
+.message-content {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.message-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #4cc9f0;
+}
+
+.message-content p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+#play-again-btn {
+    background-color: #4cc9f0;
+    color: #16213e;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+#play-again-btn:hover {
+    background-color: #f72585;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+footer a {
+    color: #4cc9f0;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer i.fa-heart {
+    color: #f72585;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .cell {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+    
+    .game-board.expert {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .cell {
+        width: 22px;
+        height: 22px;
+        font-size: 0.8rem;
+    }
+    
+    .difficulty {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .difficulty-btn {
+        width: 100%;
+    }
+}
